@@ -1,0 +1,21 @@
+{
+  "all_tests": ["tests"],
+  "full_suite_patterns": [
+    "requirements.txt",
+    "test-routing.json",
+    ".github/workflows/*",
+    "pyproject.toml"
+  ],
+  "modules": {
+    "calculator": {
+      "patterns": ["src/calculator.py", "tests/test_calculator.py"],
+      "tests": ["tests/test_calculator.py"],
+      "depends_on": []
+    },
+    "report": {
+      "patterns": ["src/report.py", "tests/test_report.py"],
+      "tests": ["tests/test_report.py"],
+      "depends_on": ["calculator"]
+    }
+  }
+}
