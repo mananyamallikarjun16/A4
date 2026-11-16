@@ -1,0 +1,42 @@
+name: All Assignments CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: ${{ matrix.assignment }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - assignment: "4.2 Smart Build-Cache Invalidation"
+            project: smart-build-cache-invalidation
+            demo: python scripts/demo.py
+          - assignment: "4.3 Dynamic Test-Subset Routing"
+            project: dynamic-test-subset-routing
+            demo: python scripts/route_tests.py --files src/calculator.py --dry-run
+          - assignment: "4.4 LLM Build/Error-Log Summarization"
+            project: llm-build-error-log-summarization
+            demo: python scripts/summarize_log.py sample/build.log --output output/summary.md
+          - assignment: "4.5 Build-Failure Prediction"
+            project: build-failure-prediction
+            demo: python scripts/predict_build.py data/historical_builds.csv --json
+    defaults:
+      run:
+        working-directory: ${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+      - name: Run tests
+        run: python -m pytest -v
+      - name: Run project demo
+        run: ${{ matrix.demo }}

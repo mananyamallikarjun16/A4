@@ -1,0 +1,30 @@
+{
+  "smart-build-cache-invalidation": {
+    "status": "passed",
+    "python": "3.14.0",
+    "command": "python -m pytest -v",
+    "passed": 2,
+    "failed": 0
+  },
+  "dynamic-test-subset-routing": {
+    "status": "passed",
+    "python": "3.14.0",
+    "command": "python -m pytest -v",
+    "passed": 5,
+    "failed": 0
+  },
+  "llm-build-error-log-summarization": {
+    "status": "passed",
+    "python": "3.14.0",
+    "command": "python -m pytest -v",
+    "passed": 3,
+    "failed": 0
+  },
+  "build-failure-prediction": {
+    "status": "passed",
+    "python": "3.14.0",
+    "command": "python -m pytest -v",
+    "passed": 2,
+    "failed": 0
+  }
+}
